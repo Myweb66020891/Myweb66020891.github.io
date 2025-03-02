@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บไซต์ธีมสีเขียว</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #3cb371;
+        }
+
+        .main-content {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2e8b57;
+            font-size: 32px;
+        }
+
+        /* หน้าหลัก */
+        .home-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .home-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .home-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .home-content {
+            flex: 1;
+        }
+
+        /* สินค้า */
+        .products-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            color: #2e8b57;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e8b57;
+            margin: 10px 0;
+        }
+
+        .product-warranty {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* วิธีใช้งาน */
+        .usage-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .usage-step {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .usage-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-image {
+            flex: 1;
+            max-width: 40%;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #2e8b57;
+            color: white;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        /* ติดต่อ */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            color: #2e8b57;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 18px;
+        }
+
+        .contact-info a {
+            color: #2e8b57;
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* สำหรับหน้าจอมือถือ */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            .home-section {
+                flex-direction: column;
+            }
+
+            .home-image {
+                max-width: 100%;
+            }
+
+            .usage-step, 
+            .usage-step:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .step-image {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ซ่อน/แสดงเนื้อหาตามหน้า */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <!-- ช่องใส่รูป logo -->
+                <img src="47f21769-40a7-480b-a098-a441c5cd9df8.jpg" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-page="home">หน้าหลัก</a></li>
+                    <li><a href="#products" class="nav-link" data-page="products">สินค้า</a></li>
+                    <li><a href="#usage" class="nav-link" data-page="usage">วิธีใช้งาน</a></li>
+                    <li><a href="#contact" class="nav-link" data-page="contact">ติดต่อ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- หน้าหลัก -->
+        <section id="home" class="page active">
+            <h2 class="section-title">หน้าหลัก</h2>
+            <div class="home-section">
+                <div class="home-image">
+                    <!-- ช่องใส่รูปภาพบนหน้าหลัก -->
+                    <img src="416b9a13-8b89-45a8-bb6d-69a4e6c1db52.jpg" alt="รูปภาพหน้าหลัก">
+                </div>
+                <div class="home-content">
+                    <!-- ช่องใส่เนื้อหาหน้าหลัก -->
+                    <h3>จากภาพตัวอย่างแปลงปลูกกะหล่ำปลี</h3>
+                    <p>แปลงปลูกกะหล่ำปลีที่มีพื้นที่กว้างขวาง อาจทำให้การคำนวณปริมาณเมล็ดพันธุ์และปุ๋ยที่ต้องใช้เป็นเรื่องยาก บ่อยครั้งเกษตรกรอาจซื้อเมล็ดพันธุ์หรือปุ๋ยมากเกินไป หรือในบางกรณีอาจมีไม่เพียงพอสำหรับพื้นที่เพาะปลูกจริง ส่งผลให้ต้นทุนเพิ่มขึ้นโดยไม่จำเป็น
+                        แต่ด้วยเทคโนโลยีหุ่นยนต์อัจฉริยะของเรา ปัญหานี้จะหมดไป! หุ่นยนต์ของเราสามารถวัดขนาดแปลงปลูกได้อย่างแม่นยำ พร้อมคำนวณปริมาณเมล็ดพันธุ์และปุ๋ยที่เหมาะสม ช่วยลดความสูญเสีย และเพิ่มประสิทธิภาพในการเพาะปลูก</p>
+                    <p>นอกจากนี้ หุ่นยนต์ยังสามารถติดตามความคืบหน้าของแปลงปลูกได้แบบเรียลไทม์ และจัดทำรายงานสรุปผลที่สามารถเข้าถึงได้ง่ายผ่านแอปพลิเคชันบนมือถือของคุณ ให้คุณบริหารจัดการแปลงปลูกได้อย่างมืออาชีพ สะดวกสบาย และคุ้มค่ามากขึ้น!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- หน้าสินค้า -->
+        <section id="products" class="page">
+            <h2 class="section-title">สินค้าของเรา</h2>
+            <div class="products-section">
+                <!-- ตัวอย่างสินค้า 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- ช่องใส่รูปภาพสินค้า -->
+                        <img src="IMG_20250302_201232.png" alt="สินค้า 1">
+                    </div>
+                    <div class="product-info">
+                        <!-- ช่องใส่เนื้อหาสินค้า -->
+                        <h3>หุ่นยนต์สำรวจพื้นที่รุ่น1</h3>
+                        <p>รายละเอียดสินค้า 
+                            สเปค เครื่อนที่XXกม/ชม
+                            ใช้งานได้ติดต่อกันXXชม
+                            แบตเตอรี่สํารองXXยูนิต
+                            สายชาร์จXXชุด
+                            แอปพลิเคชันดาวน์โหลดฟรี</p>
+                        <div class="product-price">฿25,999</div>
+                        <div class="product-warranty">รับประกัน 100 ปี</div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- หน้าวิธีใช้งาน -->
+        <section id="usage" class="page">
+            <h2 class="section-title">วิธีใช้งาน</h2>
+            <div class="usage-section">
+                <!-- ขั้นตอนที่ 1 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 1 -->
+                        <img src="IMG_20250302_203540.png" alt="ขั้นตอนที่ 1">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">1</div>
+                        <h3>ขั้นตอนที่ 1</h3>
+                        <p>สแกนคิวอาโค้ดที่มาพร้อมกับหุ่นยนต์เพื่อเข้าสุ่ระบบและเริ่มต้นการใช้งาน</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 2 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 2 -->
+                        <img src="IMG_20250302_203603.png" alt="ขั้นตอนที่ 2">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">2</div>
+                        <h3>ขั้นตอนที่ 2</h3>
+                        <p>เมื่อหุ่นยนต์เริ่มทำงานสามารถดูพื้นที่ที่หุ่นยนต์ทำการวัดระยะได้แบบเรียลไทม์</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 3 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 3 -->
+                        <img src="IMG_20250302_203627.png" alt="ขั้นตอนที่ 3">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">3</div>
+                        <h3>ขั้นตอนที่ 3</h3>
+                        <p>เมื่อทำการวัดระยะแล้วจะแสดงเมล็ดพันธุที่ต้องใช้ในแปลง</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 4 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 4 -->
+                        <img src="IMG_20250302_203652.png" alt="ขั้นตอนที่ 4">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">4</div>
+                        <h3>ขั้นตอนที่ 4</h3>
+                        <p>ในขณะเดียวกันสามารถดูปริมาณปุ๋ยได้อีกด้วย</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 5 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 5 -->
+                        <img src="IMG_20250302_203714.png" alt="ขั้นตอนที่ 5">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">5</div>
+                        <h3>ขั้นตอนที่ 5</h3>
+                        <p>สามารถดูสถาะของหุ่นยนต์ปริมาณแบตเตอรี่ที่เหลืออยู่ใช้งานได้อีกกี่ชม/กมและสามารถสั่งหยุดการทำงานได้ทุกเมื่อ</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 6 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 6 -->
+                        <img src="IMG_20250302_203737.png" alt="ขั้นตอนที่ 6">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">6</div>
+                        <h3>ขั้นตอนที่ 6</h3>
+                        <p>สามารถเลือกดูรายงานแต่ละแปลงที่หุ่นยนต์ทำการบันทึกแล้ว</p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 7 -->
+                <div class="usage-step">
+                    <div class="step-image">
+                        <!-- ช่องใส่รูปภาพขั้นตอนที่ 7 -->
+                        <img src="IMG_20250302_203802.png" alt="ขั้นตอนที่ 7">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">7</div>
+                        <h3>ขั้นตอนที่ 7</h3>
+                        <p>จะทำการสรุปรายงานของแปลงมาใน1หน้า</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- หน้าติดต่อ -->
+        <section id="contact" class="page">
+            <h2 class="section-title">ติดต่อเรา</h2>
+            <div class="contact-section">
+                <!-- ช่องทางติดต่อ: โทรศัพท์ -->
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-info">
+                        <h3>โทรศัพท์</h3>
+                        <p>0XX-XXX-XXXX</p>
+                    </div>
+                </div>
+
+                <!-- ช่องทางติดต่อ: Facebook -->
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <h3>Facebook</h3>
+                        <p><a href="#">Beam Dolnarit</a></p>
+                    </div>
+                </div>
+
+                <!-- ช่องทางติดต่อ: Email -->
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p><a href="mailto:example@email.com">nie67300@email.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 โครงงาน. by 66020891/66026257.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript สำหรับการเปลี่ยนหน้า
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // ลบ class active จากทุกลิงก์
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    // เพิ่ม class active ให้กับลิงก์ที่คลิก
+                    this.classList.add('active');
+                    
+                    // ซ่อนทุกหน้า
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // แสดงหน้าที่เลือก
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // เลื่อนไปที่ด้านบนของหน้า
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
